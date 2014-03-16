@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+	<title>WebShelf</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.1.1/united/bootstrap.min.css">
+	<style>
+		body {
+			margin-top: 6em;
+		}
+		#added{
+			display:none;
+		}
+		#added:target {
+			margin:0 auto;
+			max-width:300px;
+			margin-bottom: 1em;
+			display:block;
+		}
+	</style>
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container" style="width:auto;margin-left:2em">
+				<a class="brand" href="/" style="padding:15px">WebShelf</a>
+				<ul class="nav pull-right">
+					<li><a href="/logout" style="padding:15px">Logout</a></li>
+					<li><a href="http://nodeknockout.com/teams/catch-em-feedy" style="padding:15px">NodeKO project</a></li>
+					<li><iframe src="http://nodeknockout.com/iframe/catch-em-feedy" frameborder=0 scrolling=no allowtransparency=true width=115 height=25 style="padding:10px"></iframe></li>
+				</ul>
+		</div>
+	</div>
+</div>
+
+<div class="alert aler-success" id="added">
+	The document was successfully added!
+</div>
+
+<div class="container">
+	<div>
+	    <h1>Welcome!</h1>
+	    <h3>First step:</h3>
+	    <p>You probably want to add the default <code>style.css</code> file to your Dropbox. Just click below to add it!</p>
+	    <a class="btn" href="/addstyles">Add style.css</a>
+	    <h3>Add some articles!</h3>
+	    <h5>The fast way:</h5>
+	    <form action="/add" class="well form-horizontal" method="GET">
+		    <fieldset>
+		    	<legend>Add an article to your dropbox:</legend>
+			    <div class="control-group">
+			    	<label class="control-label" for="url">URL:</label>
+			    	<input class="controls" type="url" name="url" required placeholder="http://domain.tld/path">
+			    </div>
+			    <div class="control-group">
+					<label class="control-label" for="title">Title:</label>
+					<input class="controls" type="text" name="title" placeholder="(optional)">
+				</div>
+				<div class="form-actions">
+					<input type="submit" class="btn btn-primary" value="Submit">
+				</div>
+			</fieldset>
+		 </form>
+	    <h5>The flexible way:</h5>
+	    <p>Add the following <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklet</a> to your bookmarks:</p>
+	    <a class="btn btn-primary" style="cursor:move" href="javascript:document.location.href='http://webshelf.nko3.jit.su/add?url='+encodeURIComponent(document.location.href);">Add to WebShelf</a>
+	    <h5>The hard way:</h5>
+	    <p>Open <code>/add?url=&lt;YOUR URL&gt;&amp;title=&lt;YOUR TITLE&gt;</code> (with the parameters filled) and the article will be added to your storage.</p>
+	    <p class="lead pull-right">Enjoy!</p>
+	</div>
+</div>
+</body>
+</html>

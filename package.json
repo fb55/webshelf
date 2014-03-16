@@ -1,0 +1,21 @@
+{
+  "name": "webshelf",
+  "version": "1.0.0",
+  "description": "my node knockout 2012 project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fb55/webshelf.git"
+  },
+  "dependencies": {
+    "inline": "0.0",
+    "readabilitySAX": "1.6",
+    "express": "3",
+    "everyauth": "0.4",
+    "robots": "0.9",
+    "fsi-dropbox": "0.0"
+  }
+}

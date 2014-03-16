@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+	<title>WebShelf</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.1.1/united/bootstrap.min.css">
+	<style>
+		body {
+			margin-top: 6em;
+		}
+		#notloggedin{
+			display:none;
+		}
+		#notloggedin:target {
+			margin:0 auto;
+			max-width:200px;
+			margin-bottom: 1em;
+			display:block;
+		}
+	</style>
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container" style="width:auto;margin-left:2em">
+				<a class="brand" href="/" style="padding:15px">WebShelf</a>
+				<ul class="nav pull-right">
+					<li><a href="http://nodeknockout.com/teams/catch-em-feedy" style="padding:15px">NodeKO project</a></li>
+					<li><iframe src="http://nodeknockout.com/iframe/catch-em-feedy" frameborder=0 scrolling=no allowtransparency=true width=115 height=25 style="padding:10px"></iframe></li>
+				</ul>
+		</div>
+	</div>
+</div>
+
+<div class="alert alert-error" id="notloggedin">
+	Please login to use this service!
+</div>
+
+<div class="container">
+	<div class="well">
+		<iframe width="280" height="158" src="http://www.youtube.com/embed/MP6nc01zBLo" frameborder="0" allowfullscreen style="float:right"></iframe>
+	    <h1>WebShelf</h1>
+	    <p class="lead">a different kind of read-it-later app</p>
+		<a href="/auth/dropbox" class="btn btn-primary btn-large">Login with Dropbox</a>
+		<!--<a href="/auth/google" class="btn btn-primary">Google Drive auth</a> ++not working!-->
+	</div>
+
+	<h3>Your articles, always with you</h1>
+	<p>WebShelf let's you store the articles you want to read later where you&apos;ll definitely download them: Your Dropbox. Therefore, when you sync your Dropbox (other storage providers are planned), you'll also get your articles, in a beautiful format (<a href="/example.html">example</a>).</p>
+
+	<h3>Features</h3>
+	<ol>
+		<li>Uses the well-known Readability-algorithm via <a href="https://github.com/fb55/readabilitySAX">readabilitySAX</a> and therefore produces great articles.
+		<li>Articles are saved as single HTML5 files. All images are embeded into the file, thanks to the <a href="https://github.com/fb55/node-inline">inline</a> module, which was created for this project (during node knockout).
+		<li>Automatic archive of articles thanks to Dropbox.
+		<li>Command-line-enabled: Full-text-search is available via <code>grep</code>, you can view articles using a text-based browser and do with them whatever you like to do. Nothing prevents you from changing the files, as well as the stylesheet.
+		<li>Sharing just got even better: You don't need to send a link anymore that may lead to a dead end. Instead, you can send the whole HTML document.
+		<li>It respects <code>robots.txt</code> files, so you stop people from reading your articles (the user-agent is <code>Mozilla/5.0 (compatible; readabilitySAX/1.5; +https://github.com/fb55/readabilitySAX)</code>.
+	</ol>
+</div>
+</body>
+</html>
