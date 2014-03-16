@@ -2,8 +2,7 @@ var express = require("express"),
     everyauth = require("everyauth"),
     app = express(),
     addURL = require("./lib/addurl.js"),
-    addStyles = require("./lib/addstyles.js"),
-    fs = require("fs");
+    addStyles = require("./lib/addstyles.js");
 
 everyauth.dropbox
 	.consumerKey(process.env.DROPBOX_KEY)
@@ -24,6 +23,11 @@ app
 	.use(express.cookieParser("foo"))
 	.use(express.session());
 
+function checkAuth(req, resp, next){
+	if(!("auth" in req.session)) resp.redirect("/#notloggedin");
+	else next();
+}
+
 app.get("/", function(req, resp, next){
 	if("auth" in req.session) resp.redirect("/app");
 	else next();
@@ -32,15 +36,11 @@ app.get("/", function(req, resp, next){
 app.get("/example.html", express.static("static/"));
 app.get("/style.css", express.static("static/"));
 
-app.get("/app", function(req, resp, next){
-	if(!("auth" in req.session)) resp.redirect("/#notloggedin");
-	else next();
-}, function (req, resp){
-	fs.createReadStream(__dirname + "/static/app.html").pipe(resp);
+app.get("/app", checkAuth, function (req, resp){
+	resp.sendfile(__dirname +  "/static/app.html");
 });
 
-app.get("/add", function (req, resp, next){
-	if(!("auth" in req.session)) return resp.redirect("/#notloggedin");
+app.get("/add", checkAuth, function (req, resp, next){
 	if(!("url" in req.query)) return next(Error("No URL specified!"));
 	try {
 		addURL(req.session.auth, req.query, function(err){
@@ -51,8 +51,8 @@ app.get("/add", function (req, resp, next){
 		next(err);
 	}
 });
-app.get("/addstyles", function(req, resp, next){
-	if(!("auth" in req.session)) return resp.redirect("/#notloggedin");
+
+app.get("/addstyles", checkAuth, function(req, resp, next){
 	addStyles(req.session.auth, function(err){
 		if(err) next(err);
 		else resp.redirect("/app#added");
