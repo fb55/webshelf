@@ -42,14 +42,11 @@ app.get("/app", checkAuth, function (req, resp){
 
 app.get("/add", checkAuth, function (req, resp, next){
 	if(!("url" in req.query)) return next(Error("No URL specified!"));
-	try {
-		addURL(req.session.auth, req.query, function(err){
-			if(err) next(err);
-			else resp.redirect("/app#added");
-		});
-	} catch(err){
-		next(err);
-	}
+
+	addURL(req.session.auth, req.query, function(err){
+		if(err) next(err);
+		else resp.redirect("/app#added");
+	});
 });
 
 app.get("/addstyles", checkAuth, function(req, resp, next){
